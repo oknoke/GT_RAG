@@ -5,8 +5,8 @@ def split_documents(blog_docs):
     logger.debug(f"Splitting documents : {len(blog_docs)}")
     # Create a RecursiveCharacterTextSplitter
     text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-        chunk_size=300,
-        chunk_overlap=50)
+        chunk_size=500,
+        chunk_overlap=100)
 
     # Make splits
     splits = text_splitter.split_documents(blog_docs)
