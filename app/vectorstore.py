@@ -11,6 +11,6 @@ def store_data(data):
 
 def similiarity_search(query):
     logger.info(f"Vector Search : query '{query}'")
-    res = vectorstore.similarity_search_with_relevance_scores(query=query,k=5,score_threshold=0.5)
+    res = vectorstore.max_marginal_relevance_search(query=query,k=10)
     logger.info(f"Vector search result : len(res) {len(res)}")
     return res
