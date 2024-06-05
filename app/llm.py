@@ -24,5 +24,5 @@ def get_answer(context,question):
     print(context)
     logger.debug(f"llm query : question {question}")
     answer = chain.invoke({"context":context,"question":question})
-    logger.debug(f"llm answered  : len(answer.content) {len(answer.content)}")
+    logger.debug(f"llm answered  : answer.content {answer.content}")
     return answer.content
