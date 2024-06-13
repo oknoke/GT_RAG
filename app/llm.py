@@ -1,6 +1,8 @@
 
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
+from langchain_google_genai import ChatGoogleGenerativeAI
+
 from langchain import hub
 from loguru import logger
 
@@ -15,14 +17,12 @@ Answer:
 prompt = ChatPromptTemplate.from_template(template)
 # Prompt
 
-llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.2)
-
-chain = prompt | llm
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
 
 
-def get_answer(context,question):
-    print(context)
-    logger.debug(f"llm query : question {question}")
-    answer = chain.invoke({"context":context,"question":question})
+
+def get_answer(messages):
+    answer = llm.invoke(messages)
     logger.debug(f"llm answered  : answer.content {answer.content}")
+    logger.debug(f"Tokens used : {answer.usage_metadata}")
     return answer.content
